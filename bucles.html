@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Bucles en Python: Repite y automatiza tus tareas</title>
+    <style>
+        .toggle-btn {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #2980b9;
+    padding: 10px 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 10px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+}
+.toggle-btn:hover {
+    background-color: #2980b9;
+    border-color: #1f6391;
+}
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            background: #f4f6f7; 
+            color: #2c3e50;
+        }
+        header {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #2980b9;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+        nav a:hover { text-decoration: underline; }
+        main {
+            padding: 40px 20px;
+            max-width: 980px;
+            margin: auto;
+        }
+        h1, h2, h3 { color: #2c3e50; }
+        .code-box {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 16px 0;
+            overflow-x: auto;
+        }
+        .explicacion {
+            margin-top: 10px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-left: 5px solid #3498db;
+        }
+        ul {
+            background: #ecf0f1;
+            padding: 16px 20px;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #fff8e1;
+            border-left: 5px solid #f39c12;
+            padding: 12px 15px;
+            margin: 12px 0;
+        }
+        .next-section {
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        .btn-next {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .btn-next:hover {
+            background: #2980b9;
+        }
+        footer {
+            background: #bdc3c7;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        <script>
+function toggleResultado(id, boton) {
+    const bloque = document.getElementById(id);
+    if (bloque.style.display === "none" || bloque.style.display === "") {
+        bloque.style.display = "block";
+        boton.textContent = "Ocultar resultado";
+    } else {
+        bloque.style.display = "none";
+        boton.textContent = "Ver resultado";
+    }
+}
+</script>
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bucles en Python: Repite y automatiza tus tareas</h1>
+        <p>La herramienta para ejecutar código varias veces sin repetirlo manualmente</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="condicionales.html">Condicionales</a>
+        <a href="bucles.html">Bucles</a>
+        <a href="funciones.html">Funciones</a>
+        <a href="ejercicios.html">Ejercicios para practicar</a>
+
+    </nav>
+
+    <main>
+        <h2>Qué es un bucle?</h2>
+        <p>
+            Un bucle es una estructura que ejecuta un bloque de código repetidas veces, ya sea recorriendo una secuencia de datos
+            o mientras una condición lógica se mantenga verdadera. En Python trabajamos principalmente con dos tipos:
+            <strong>for</strong> (recorre elementos) y <strong>while</strong> (repite según una condición).
+        </p>
+        <ul>
+            <li><strong>Evita repetición:</strong> en lugar de copiar el mismo código 10 veces, el bucle lo hace por vos.</li>
+            <li><strong>Flexible:</strong> podés recorrer listas, cadenas, rangos de números y más.</li>
+            <li><strong>Controlable:</strong> podés cortar, saltear iteraciones o agregar acciones al finalizar.</li>
+        </ul>
+
+        <h2>Bucle FOR</h2>
+        <p>
+            El bucle <strong>for</strong> recorre una <em>secuencia</em> (lista, cadena, rango, tupla, diccionario) y ejecuta el bloque
+            de código una vez por cada elemento. Es ideal cuando <strong>sabés cuántas veces</strong> querés iterar o tenés una colección a recorrer.
+        </p>
+
+        <h3>Sintaxis del for</h3>
+        <div class="code-box">
+# Estructura general
+for variable in secuencia:
+    # bloque de código a ejecutar por cada elemento
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usarlo:</strong> elegí una secuencia (por ejemplo, una lista). La variable toma el valor de cada elemento en orden.
+            Dentro del bloque, escribís lo que querés que ocurra en cada vuelta.
+        </div>
+
+       <h3>Ejemplo: recorrer una lista</h3>
+
+<div class="code-box">
+# Código en Python
+frutas = ["manzana", "banana", "cereza"]
+
+for fruta in frutas:
+    print("Me gusta la", fruta)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Me gusta la manzana"
+"Me gusta la banana"
+"Me gusta la cereza"
+</div>
+
+<div class="explicacion">
+    1. Creamos una lista llamada <code>frutas</code> con tres elementos. <br>
+    2. El bucle <code>for</code> recorre cada elemento de la lista en orden. <br>
+    3. En cada vuelta, la variable <code>fruta</code> toma un valor distinto y se imprime en pantalla. <br>
+    👉 Si agregás otra fruta a la lista, el bucle automáticamente la recorrerá también.
+</div>
+        <h3>Iterar con range()</h3>
+        <div class="code-box">
+# Contar de 0 a 4
+for i in range(5):
+    print(i)
+
+# Contar de 2 a 10 de a 2
+for i in range(2, 11, 2):
+    print(i)
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usar range:</strong> <code>range(fin)</code> genera 0..fin-1. <code>range(inicio, fin, paso)</code> controla los límites y el incremento.
+            <strong>Tip:</strong> si querés incluir el número final, sumá 1 al segundo parámetro (ej. <code>range(1, 11)</code> para 1..10).
+        </div>
+        <h3>Ejemplo: usar range()</h3>
+
+<div class="code-box">
+# Código en Python
+for i in range(5):
+    print(i)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+0
+1
+2
+3
+4
+</div>
+
+<div class="explicacion">
+    <code>range(5)</code> genera los números del 0 al 4.  
+    El bucle imprime cada número en una línea distinta.
+</div>
+
+        <h3>Recorrer cadenas y diccionarios</h3>
+        <div class="code-box">
+# Cadena (string)
+for letra in "Python":
+    print(letra)
+
+# Diccionario
+persona = {"nombre": "Lucía", "edad": 30}
+for clave, valor in persona.items():
+    print(clave, "=>", valor)
+        </div>
+        <div class="explicacion">
+            <strong>Cadenas:</strong> el for recorre cada carácter.  
+            <strong>Diccionarios:</strong> con <code>.items()</code> obtenés pares clave-valor para iterar de forma clara.
+        </div>
+
+        <h2>Bucle while</h2>
+        <p>
+            El bucle <strong>while</strong> repite un bloque <em>mientras</em> una condición sea verdadera. Es útil cuando
+            <strong>no sabés cuántas iteraciones</strong> habrá y depende del estado de tu programa (entrada del usuario, conteos, etc.).
+        </p>
+
+        <h3>Sintaxis del while</h3>
+        <div class="code-box">
+# Estructura general
+while condicion:
+    # bloque de código que se ejecuta mientras la condición sea True
+    # recordá actualizar variables para evitar bucles infinitos
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usarlo:</strong> definí una condición booleana (ej. <code>contador &lt;= 5</code>). Dentro del bucle, cambiá el estado (ej. <code>contador += 1</code>) para que
+            la condición eventualmente se vuelva falsa y el bucle termine.
+        </div>
+
+        <h3>Ejemplo: contador controlado</h3>
+        <div class="code-box">
+contador = 1
+while contador <= 5:
+    print("Vuelta", contador)
+    contador += 1
+        </div>
+        <div class="explicacion">
+            <strong>Qué pasa:</strong> imprime de 1 a 5 y luego termina.  
+            <strong>Error típico:</strong> si olvidás <code>contador += 1</code>, la condición nunca cambia y el bucle se vuelve infinito.
+        </div>
+
+        <h3>Ejemplo: pedir una clave</h3>
+        <div class="code-box">
+clave = ""
+intentos = 0
+while clave != "python123" and intentos < 3:
+    clave = input("Ingresá la clave: ")
+    intentos += 1
+
+if clave == "python123":
+    print("Acceso concedido")
+else:
+    print("Demasiados intentos")
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usar el input con while:</strong> la condición combina comparación e intentos máximos. Actualizás la variable cada vuelta.  
+            <strong>Buena práctica:</strong> siempre poné un límite de intentos para evitar esperas infinitas si el usuario se equivoca.
+        </div>
+        
+        <h2>Comparación entre <code>for</code> y <code>while</code></h2>
+
+<p>Ambos bucles permiten repetir acciones, pero tienen diferencias importantes en cómo funcionan y cuándo conviene usar cada uno.</p>
+
+<table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+    <tr style="background-color: #3498db; color: white;">
+        <th style="padding: 10px;">Característica</th>
+        <th style="padding: 10px;">Bucle <code>for</code></th>
+        <th style="padding: 10px;">Bucle <code>while</code></th>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px;">🔁 Tipo de repetición</td>
+        <td style="padding: 10px;">Recorre una secuencia conocida</td>
+        <td style="padding: 10px;">Repite mientras una condición sea verdadera</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">📦 Ideal para</td>
+        <td style="padding: 10px;">Listas, cadenas, rangos, iteraciones contadas</td>
+        <td style="padding: 10px;">Validaciones, entradas del usuario, lógica abierta</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px;">🧠 Control de flujo</td>
+        <td style="padding: 10px;">Automático: termina al recorrer todo</td>
+        <td style="padding: 10px;">Manual: depende de que actualices la condición</td>
+    </tr>
+    <tr>
+        <td style="padding: 10px;">⚠️ Riesgo de bucle infinito</td>
+        <td style="padding: 10px;">Muy bajo</td>
+        <td style="padding: 10px;">Alto si olvidás actualizar la variable</td>
+    </tr>
+    <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px;">🧾 Sintaxis</td>
+        <td style="padding: 10px;"><code>for variable in secuencia:</code></td>
+        <td style="padding: 10px;"><code>while condición:</code></td>
+    </tr>
+</table>
+
+<div class="explicacion">
+    <strong>¿Cuándo usar cada uno?</strong><br>
+    Usá <code>for</code> cuando sabés cuántas veces querés repetir algo o tenés una colección para recorrer.<br>
+    Usá <code>while</code> cuando no sabés cuántas veces se va a repetir y depende de una condición que puede cambiar.
+</div>
+
+<h3>Ejemplo paralelo: imprimir los números del 1 al 5</h3>
+
+<div class="code-box">
+# Con for
+for i in range(1, 6):
+    print("Número:", i)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Número: 1"
+"Número: 2"
+"Número: 3"
+"Número: 4"
+"Número: 5"
+</div>
+
+<div class="explicacion">
+    <strong>Explicación:</strong><br>
+    Usamos <code>range(1, 6)</code> para generar los números del 1 al 5.<br>
+    El bucle se repite automáticamente 5 veces, sin necesidad de actualizar ninguna variable.
+</div>
+
+<div class="code-box">
+# Con while
+i = 1
+while i <= 5:
+    print("Número:", i)
+    i += 1
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Número: 1"
+"Número: 2"
+"Número: 3"
+"Número: 4"
+"Número: 5"
+</div>
+
+<div class="explicacion">
+    <strong>Explicación:</strong><br>
+    Creamos una variable <code>i</code> y la vamos actualizando manualmente con <code>i += 1</code>.<br>
+    El bucle se repite mientras <code>i</code> sea menor o igual a 5.
+</div>
+
+<div class="explicacion">
+    ✅ Ambos bucles pueden lograr lo mismo, pero <strong>for</strong> es más compacto y seguro cuando el número de repeticiones es fijo.<br>
+    🧠 <strong>while</strong> te da más flexibilidad, pero requiere que vos controles la condición y actualices las variables correctamente.
+</div>
+
+        <h2>Control de bucles: break, continue y else</h2>
+        <p>
+            Estas palabras clave te permiten controlar el flujo dentro del bucle. Son compatibles tanto con <strong>for</strong> como con <strong>while</strong>.
+        </p>
+
+        <h3>Ejemplo completo</h3>
+        <div class="code-box">
+for num in range(1, 6):
+    if num == 3:
+        continue  # salta el 3, no ejecuta el print ese turno
+    if num == 5:
+        break     # corta el bucle inmediatamente
+    print(num)
+else:
+    print("Bucle terminado sin break")  # se ejecuta solo si no hubo break
+        </div>
+        <div class="explicacion">
+            <strong>continue:</strong> salteá una iteración específica.  
+            <strong>break:</strong> terminá el bucle en el momento.  
+            <strong>else en bucles:</strong> se ejecuta al finalizar el bucle <em>si</em> no se interrumpió con <code>break</code>.
+        </div>
+
+        <h2>Bucles anidados</h2>
+        <p>
+            Un bucle dentro de otro sirve para recorrer estructuras bidimensionales (matrices, tablas) o combinar elementos.
+        </p>
+        <div class="code-box">
+for i in range(1, 4):
+    for j in range(1, 3):
+        print(f"i={i}, j={j}")
+        </div>
+        <div class="explicacion">
+            <strong>Lectura:</strong> por cada <code>i</code>, se recorren todos los valores de <code>j</code>. El total de iteraciones es <code>len(rango_i) * len(rango_j)</code>.
+        </div>
+
+        <h2>Ejemplos prácticos paso a paso</h2>
+
+        <h3>Tabla de multiplicar con for</h3>
+        <div class="code-box">
+numero = 5
+for i in range(1, 11):
+    print(f"{numero} x {i} = {numero * i}")
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usarlo:</strong> elegí el número y el rango. En cada vuelta, multiplicás y mostrás.  
+            <strong>Para practicar:</strong> convertí <code>numero</code> en <code>int(input(...))</code> para que el usuario elija.
+        </div>
+
+        <h3>Contador regresivo con while</h3>
+        <div class="code-box">
+contador = 5
+while contador > 0:
+    print(contador)
+    contador -= 1
+print("¡Despegue!")
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usarlo:</strong> la condición va disminuyendo hasta ser falsa. Al terminar, imprimís el mensaje final fuera del bucle.
+        </div>
+
+        <h3>Contar vocales en una palabra</h3>
+        <div class="code-box">
+palabra = "Programación"
+vocales = "aeiouáéíóúAEIOUÁÉÍÓÚ"
+conteo = 0
+
+for letra in palabra:
+    if letra in vocales:
+        conteo += 1
+
+print("Cantidad de vocales:", conteo)
+        </div>
+        <div class="explicacion">
+            <strong>Cómo usarlo:</strong> recorrés la cadena y sumás cuando la letra está en el conjunto de vocales.  
+            <strong>Tip:</strong> usá <code>palabra.lower()</code> y un conjunto de vocales en minúscula para simplificar.
+        </div>
+
+        <h2>Errores comunes y cómo evitarlos</h2>
+        <ul>
+            <li><strong>While infinito:</strong> olvidar actualizar la variable o escribir una condición que nunca se vuelve falsa.</li>
+                        <h3>Ejemplo while infinito:</h3>
+
+<div class="code-box">
+# Código incorrecto
+contador = 1
+
+while contador <= 3:
+    print("Vuelta", contador)
+    # Falta actualizar contador
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Vuelta 1"
+"Vuelta 1"
+"Vuelta 1"
+... (se repite para siempre)
+</div>
+
+<div class="explicacion">
+    Como <code>contador</code> nunca cambia, la condición <code>contador <= 3</code> siempre es verdadera.  
+    Esto genera un bucle infinito.
+</div>
+
+<div class="code-box">
+# Código corregido
+contador = 1
+
+while contador <= 3:
+    print("Vuelta", contador)
+    contador += 1
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Vuelta 1"
+"Vuelta 2"
+"Vuelta 3"
+</div>
+            <li><strong>Recorrer índices innecesarios:</strong> usar <code>range(len(lista))</code> cuando podés hacer <code>for elemento in lista</code>.</li>
+                         <h3>Ejemplo recorrer lista con índices innecesarios:</h3>
+
+<div class="code-box">
+# Código incorrecto
+frutas = ["manzana", "banana", "cereza"]
+
+for i in range(len(frutas)):
+    print(frutas[i])
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"manzana"
+"banana"
+"cereza"
+</div>
+
+<div class="explicacion">
+    Funciona, pero es más complicado de leer.  
+    Usar <code>range(len(...))</code> solo tiene sentido si necesitás el índice.
+</div>
+
+<div class="code-box">
+# Código corregido
+frutas = ["manzana", "banana", "cereza"]
+
+for fruta in frutas:
+    print(fruta)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"manzana"
+"banana"
+"cereza"
+</div>
+            <li><strong>Mala indentación:</strong> sangrías incorrectas que sacan el <code>print</code> del bucle o rompen la lógica.</li>
+                         <h3>Ejemplo indentación incorrecta:</h3>
+
+<div class="code-box">
+# Código incorrecto
+for i in range(3):
+print("Número:", i)   # ❌ Falta sangría
+</div>
+
+<div class="code-box">
+# Salida en consola:
+IndentationError: expected an indented block
+</div>
+
+<div class="code-box">
+# Código corregido
+for i in range(3):
+    print("Número:", i)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+"Número: 0"
+"Número: 1"
+"Número: 2"
+</div>
+            <li><strong>Modificar la lista mientras se recorre:</strong> puede generar comportamientos inesperados; preferí crear una nueva lista.</li>
+                         <h3>Ejemplo modificar lista durante el bucle:</h3>
+
+<div class="code-box">
+# Código incorrecto
+numeros = [1, 2, 3, 4]
+
+for n in numeros:
+    if n % 2 == 0:
+        numeros.remove(n)
+print(numeros)
+</div>
+
+<div class="code-box">
+# Salida en consola (puede variar):
+[1, 3]
+</div>
+
+<div class="explicacion">
+    El bucle se salta elementos porque la lista cambia mientras se recorre.  
+    Esto genera resultados inesperados.
+</div>
+
+<div class="code-box">
+# Código corregido
+numeros = [1, 2, 3, 4]
+nueva_lista = []
+
+for n in numeros:
+    if n % 2 != 0:
+        nueva_lista.append(n)
+
+print(nueva_lista)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+[1, 3]
+</div>
+            <li><strong>Confundir límites de range:</strong> recordar que el segundo parámetro es exclusivo; <code>range(1, 5)</code> devuelve 1..4.</li>
+                         <h3>Ejemplo confundir límites de range:()</h3>
+
+<div class="code-box">
+# Código incorrecto
+for i in range(1, 5):
+    print(i)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+1
+2
+3
+4
+</div>
+
+<div class="explicacion">
+    Muchos principiantes esperan que <code>range(1, 5)</code> incluya el 5,  
+    pero el segundo parámetro es exclusivo.
+</div>
+
+<div class="code-box">
+# Código corregido
+for i in range(1, 6):
+    print(i)
+</div>
+
+<div class="code-box">
+# Salida en consola:
+1
+2
+3
+4
+5
+</div>
+        </ul>
+
+        <h2>Buenas prácticas</h2>
+        <ul>
+            <li><strong>Variables claras:</strong> nombres que describen el contenido (ej. <code>for fruta in frutas</code>).</li>
+            <li><strong>Preferir for:</strong> si sabés el número de iteraciones o recorrés una colección, <code>for</code> es más seguro y legible.</li>
+            <li><strong>Usar comprensiones:</strong> para transformar/filtrar colecciones sin escribir bucles explícitos.</li>
+            <li><strong>Evitar lógica profunda:</strong> extraé partes a funciones si el bucle hace demasiadas cosas.</li>
+        </ul>
+        <div class="code-box">
+# Comprensión de listas: cuadrados del 1 al 5
+cuadrados = [x**2 for x in range(1, 6)]
+print(cuadrados)  # [1, 4, 9, 16, 25]
+
+# Filtrar pares
+pares = [x for x in range(10) if x % 2 == 0]
+print(pares)  # [0, 2, 4, 6, 8]
+        </div>
+
+        <h2>Mini desafíos: ¿for o while?</h2>
+<p>Elegí el bucle más adecuado para cada situación. Pensá: ¿sabés cuántas veces se repite? ¿depende de una condición?</p>
+
+<!-- Desafío 1 -->
+<h3>🔹 Desafío 1: imprimir los números del 1 al 10</h3>
+<div class="explicacion">
+    Querés mostrar los números del 1 al 10 en pantalla.  
+    <strong>Pista:</strong> ¿sabés cuántas veces se repite?
+</div>
+<div class="code-box">
+    # Solución sugerida (for)<br>
+    for i in range(1, 11):<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print(i)
+</div>
+<div class="code-box">
+    # Salida en consola:<br>
+    1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
+</div>
+
+<!-- Desafío 2 -->
+<h3>🔹 Desafío 2: pedir una contraseña hasta que sea correcta</h3>
+<div class="explicacion">
+    El usuario debe ingresar la clave <code>"python123"</code>.  
+    Si se equivoca, se le vuelve a pedir.  
+    <strong>Pista:</strong> ¿sabés cuántas veces se repite?
+</div>
+<div class="code-box">
+    # Solución sugerida (while)<br>
+    clave = ""<br>
+    while clave != "python123":<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;clave = input("Ingresá la clave: ")<br>
+    print("Acceso concedido")
+</div>
+<div class="code-box">
+    # Salida en consola:<br>
+    "Ingresá la clave: hola"<br>
+    "Ingresá la clave: python123"<br>
+    "Acceso concedido"
+</div>
+
+<!-- Desafío 3 -->
+<h3>🔹 Desafío 3: recorrer una lista de nombres y saludar</h3>
+<div class="explicacion">
+    Tenés una lista con varios nombres: <code>["Ana", "Luis", "Carlos"]</code>.  
+    Querés saludar a cada uno.  
+    <strong>Pista:</strong> ¿tenés una secuencia definida?
+</div>
+<div class="code-box">
+    # Solución sugerida (for)<br>
+    nombres = ["Ana", "Luis", "Carlos"]<br>
+    for nombre in nombres:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;print("Hola", nombre)
+</div>
+<div class="code-box">
+    # Salida en consola:<br>
+    "Hola Ana"<br>
+    "Hola Luis"<br>
+    "Hola Carlos"
+</div>
+
+        <h2>Ejercicios para practicar</h2>
+        <ul>
+            <li><strong>Pares del 1 al 20:</strong> imprimí solo números pares usando <code>range()</code> y un <code>if</code> dentro del bucle.</li>
+            <li><strong>Tabla de multiplicar:</strong> pedí un número con <code>input()</code> y mostrala del 1 al 10.</li>
+            <li><strong>Saludo por nombres:</strong> recorré una lista de nombres y saludá con un formato bonito.</li>
+            <li><strong>PIN con intentos:</strong> simulá un PIN con <code>while</code> y límite de intentos; mostrás éxito o bloqueo.</li>
+            <li><strong>Contar vocales:</strong> pedí una palabra y contá cuántas vocales tiene (considerá acentos).</li>
+        </ul>
+        <div class="tip">
+            <strong>Consejo:</strong> resolvé primero en papel qué querés que pase en cada vuelta del bucle. Escribir la lógica clara antes del código evita errores de flujo.
+        </div>
+
+        <div class="next-section">
+            <a class="btn-next" href="funciones.html">➡️ Siguiente página: Funciones</a>
+        </div>
+    </main>
+
+    <footer>
+        © 2025 — primeros pasos en Python | Creado por <strong>Tomas Sanchez Paez</strong> con ❤️ y curiosidad
+    </footer>
+</body>
+</html>
